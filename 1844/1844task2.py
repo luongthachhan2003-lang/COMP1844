@@ -92,7 +92,8 @@ plt.figure(figsize=(12, 10))
 nx.draw_networkx_nodes(G, pos, node_color='lightgray', node_size=400, edgecolors='black', linewidths=1)
 edge_colors = [G[u][v]['color'] for u, v in G.edges()]
 nx.draw_networkx_edges(G, pos, edge_color=edge_colors, width=3)
-edge_labels = {(u, v): str(G[u][v]['weight']) for u, v in G.edges()}
+# Render edge labels on two lines: number above, 'km' below
+edge_labels = {(u, v): f"{G[u][v]['weight']:.1f}\nkm" for u, v in G.edges()}
 nx.draw_networkx_edge_labels(G, pos, edge_labels, font_size=7)
 
 # Labels 
@@ -130,3 +131,4 @@ plt.axis('off')
 plt.title('London Underground Central Section (TfL October 2025)', fontsize=14)
 plt.tight_layout()
 plt.show()
+
